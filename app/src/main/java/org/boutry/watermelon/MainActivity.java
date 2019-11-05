@@ -1,5 +1,6 @@
 package org.boutry.watermelon;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,10 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import org.boutry.watermelon.data.LoginDataSource;
+import org.boutry.watermelon.data.LoginRepository;
+import org.boutry.watermelon.data.model.NotLoggedInException;
+import org.boutry.watermelon.data.model.User;
+import org.boutry.watermelon.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private LoginDataSource loginDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,31 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        this.loginDataSource = new LoginDataSource();
+
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.checkLoginState();
+    }
+
+    private void checkLoginState() {
+        LoginRepository instance = LoginRepository.getInstance(new LoginDataSource());
+        User user = null;
+
+        try {
+            user = instance.getLoggedInUser();
+            ((TextView) findViewById(R.id.txtDisplayName)).setText(user.getDisplayName());
+            ((TextView) findViewById(R.id.txtEmail)).setText(user.getEmail());
+        } catch(NotLoggedInException e) {
+            Intent loginActivty = new Intent(this, LoginActivity.class);
+            startActivity(loginActivty);
+        }
     }
 
     @Override
