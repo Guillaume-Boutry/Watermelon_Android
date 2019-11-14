@@ -1,5 +1,9 @@
 package org.boutry.watermelon.data.model;
 
+import android.util.JsonReader;
+
+import java.io.IOException;
+
 public class User {
     private int id;
     private String firstName;
@@ -33,4 +37,39 @@ public class User {
     public String getDisplayName() {
         return getLastName() + " " + getFirstName();
     }
+
+    public static User parseJson(JsonReader jsonReader) throws IOException {
+        jsonReader.beginObject();
+        int id = 0;
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        try {
+            while (jsonReader.hasNext()) {
+                final String key = jsonReader.nextName();
+                switch (key) {
+                    case "id":
+                        id = jsonReader.nextInt();
+                        break;
+                    case "email":
+                        email = jsonReader.nextString();
+                        break;
+                    case "first_name":
+                        firstName = jsonReader.nextString();
+                        break;
+                    case "last_name":
+                        lastName = jsonReader.nextString();
+                        break;
+                    default:
+                        jsonReader.skipValue();
+                        break;
+                }
+            }
+        } finally {
+            jsonReader.endObject();
+        }
+
+        return new User(id, firstName, lastName, email);
+    }
+
 }

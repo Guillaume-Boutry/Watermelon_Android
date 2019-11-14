@@ -17,19 +17,17 @@ import org.boutry.watermelon.R;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        final TextView balance = root.findViewById(R.id.text_balance);
+        final String balanceLocale = getResources().getString(R.string.watermelon_balance);
+        homeViewModel.getBalance().observe(this, (wallet -> {
+            balance.setText(String.format("%s %s€", balanceLocale, wallet.getBalance()));
+        }));
         return root;
     }
+
 }

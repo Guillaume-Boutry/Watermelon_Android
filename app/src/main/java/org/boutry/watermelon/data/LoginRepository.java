@@ -23,9 +23,9 @@ public class LoginRepository {
         this.dataSource = dataSource;
     }
 
-    public static LoginRepository getInstance(LoginDataSource dataSource) {
+    public static LoginRepository getInstance() {
         if (instance == null) {
-            instance = new LoginRepository(dataSource);
+            instance = new LoginRepository(new LoginDataSource());
         }
         return instance;
     }
@@ -45,9 +45,9 @@ public class LoginRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public User getLoggedInUser() throws NotLoggedInException {
+    public LoggedInUser getLoggedInUser() throws NotLoggedInException {
         if(isLoggedIn()) {
-            return user.getUser();
+            return user;
         }
         throw new NotLoggedInException();
     }

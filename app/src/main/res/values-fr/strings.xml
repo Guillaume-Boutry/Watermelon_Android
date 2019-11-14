@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Watermelon</string>
+    <string name="navigation_drawer_open">Ouvrir menu tiroir</string>
+    <string name="navigation_drawer_close">Fermer menu tiroir</string>
+    <string name="nav_header_title">Watermelon</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Paramètres</string>
+
+    <string name="menu_home">Acceuil</string>
+    <string name="menu_payin">Dépôts</string>
+    <string name="menu_slideshow">Gallerie</string>
+    <string name="menu_maps">Carte</string>
+    <string name="menu_share">Partager</string>
+    <string name="menu_send">Envoyer</string>
+    <string name="title_activity_login">S\'identifier</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="action_sign_in">S\'identifier</string>
+    <string name="action_sign_in_short">Connexion</string>
+    <string name="welcome">"Bienvenue"</string>
+    <string name="invalid_username">Email invalide</string>
+    <string name="invalid_password">Mot de passe invalide</string>
+    <string name="login_failed">Connexion échouée</string>
+    <string name="watermelon_balance">Solde</string>
+    <string name="watermelon_id">ID</string>
+    <string name="watermelon_wallet_id">PORTEFEUILLE</string>
+    <string name="watermelon_amount">VALEUR</string>
+    <string name="app_main">Main</string>
+    <string name="other_locale">EN</string>
+    <string name="permission_camera_refused">Autorisez la caméra</string>
+    <string name="maps_access_required">Tout se passerait mieux si tu nous laissais faire</string>
+    <string name="maps_unavailable">Soucis avec ta position</string>
+    <string name="ok">ok</string>
+</resources>
